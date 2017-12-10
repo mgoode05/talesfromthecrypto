@@ -5,10 +5,11 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
 
+
 app.use(logger('dev'));
 //Serve favicon & static middles serve from the build folder
 app.use(express.static(path.join(__dirname, 'build')));
-app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 
 //API Routes
 
