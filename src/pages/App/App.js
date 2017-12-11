@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import './App.css';
+import API from '../../api/api';
 import NavBar from '../../components/NavBar/NavBar';
 import HomePage from '../HomePage/HomePage';
 import Watchlist from '../WatchlistPage/Watchlist';
