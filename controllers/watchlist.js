@@ -1,7 +1,7 @@
-function index(req, res) {
+function getWatchlist(req, res) {
     res.json('hello')
 }
 
 module.exports = {
-    index
+    getWatchlist
 }

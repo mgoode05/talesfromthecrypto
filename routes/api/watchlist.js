@@ -3,7 +3,7 @@ var router = express.Router();
 var watchlistCtrl = require('../../controllers/watchlist');
 
 // router.post('/', checkAuth, watchlistCtrl.index);
-router.post('/', watchlistCtrl.index);
+router.post('/', watchlistCtrl.getWatchlist);
 
 function checkAuth(req, res, next) {
     if (req.user) return next();

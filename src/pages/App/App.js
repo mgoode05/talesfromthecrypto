@@ -22,7 +22,8 @@ class App extends Component {
     super()
     this.state = {
       user: false,
-      cryptocurrencies: []
+      cryptocurrencies: [],
+      stock:""
     }
   }
 
@@ -68,6 +69,11 @@ class App extends Component {
     this.setState({user: userService.getUser(), user: true})
   }
 
+  handleClick = (e) => {
+    console.log('this is event', e)
+    this.setState({stock: 'BITCOIN'})
+}
+
   render() {
     return (
       <div>
@@ -75,7 +81,7 @@ class App extends Component {
             <NavBar user={this.state.user}/>
         </header>
         <Switch>
-            <Route exact path='/' render={() => <HomePage cryptocurrencies={this.state.cryptocurrencies} addStock={this.addStock} /> } />
+            <Route exact path='/' render={() => <HomePage  cryptocurrencies={this.state.cryptocurrencies} addStock={this.addStock} /> } />
             <Route exact path='/watchlist' render={() => ( 
               userService.getUser() ? 
               <Watchlist />
@@ -88,7 +94,7 @@ class App extends Component {
                 handleSignup={this.handleSignup}
                 />
               }/>
-            <Route path='/individualcc' render={() => <IndividualCC />} />
+            <Route path='/name/:name' render={(props) => <IndividualCC {...props} cryptocurrencies={this.state.cryptocurrencies} stock={this.stock}/>} />
             <Route exact path='/login' render={(props) => 
               <LoginPage
                 {...props}
