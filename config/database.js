@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/talesfromthecrpyto', {useMongoClient: true});
+mongoose.connect(process.env.DATABASE_URL, {useMongoClient: true});
 
 var db = mongoose.connection;
 
-db.once('opne', () => {
+db.once('open', () => {
     console.log(`Connected to MongoDB ${db.name}`);
 });

@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import {
-  Route,
-  Switch
-} from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import './App.css';
-import API from '../../api/api';
+import {
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
+import userService from '../../utils/userService';
 import NavBar from '../../components/NavBar/NavBar';
+import SignUpPage from '../SignUpPage/SignUpPage';
+import LoginPage from '../LoginPage/LoginPage';
 import HomePage from '../HomePage/HomePage';
 import Watchlist from '../WatchlistPage/Watchlist';
+import IndividualCC from '../IndividualCCPage/IndividualCC';
 import cc from 'cryptocompare';
-global.fetch = require('node-fetch');
 
 // import IndividualCC from '../IndividualCC/IndividualCC';
 
@@ -18,19 +21,29 @@ class App extends Component {
   constructor(props) {
     super()
     this.state = {
+      user: false,
       cryptocurrencies: []
     }
   }
 
-  
+  addStock = (props) => {
+    fetch('/watchlist', {
+      method: 'POST',
+      headers: {'content-Type': 'application/json'},
+      body: JSON.stringify({ stock: "cats" })
+    })
+    console.log('added stock')
+  }
 
   componentDidMount() {
     let cryptocurrenciesShown = ['BTC', 'ETH', 'BCH', 'MIOTA', 'LTC', 'XRP'];
   
-  //List of Currencies to be used
-  let currencyOptions = ['USD'];
+    let currencyOptions = ['USD'];
   
-  //Cryptocurrency to be used
+    let user = userService.getUser();
+      this.setState({user});
+
+  //Cryptocurrency API request
   cc.priceFull([cryptocurrenciesShown], [currencyOptions])
     .then(prices => {
       var tempCrypto = [];
@@ -47,17 +60,41 @@ class App extends Component {
     })
   }
 
+  handleSignup = () => {
+    this.setState({user: userService.getUser(), user: true});
+  }
+
+  handleLogin = () => {
+    this.setState({user: userService.getUser(), user: true})
+  }
+
   render() {
     return (
       <div>
         <header>
-            <NavBar />
-            {/* {this.state.cryptocurrencies.map(cryptocurrency => <div>{cryptocurrency.price})} */}
+            <NavBar user={this.state.user}/>
         </header>
         <Switch>
-            <Route exact path='/' render={() => <HomePage cryptocurrencies={this.state.cryptocurrencies} /> } />
-            <Route path='/watchlist' render={() => <Watchlist /> } />
-            {/* <Route path='/individualcc' render={() => <IndividualCC />} /> */}
+            <Route exact path='/' render={() => <HomePage cryptocurrencies={this.state.cryptocurrencies} addStock={this.addStock} /> } />
+            <Route exact path='/watchlist' render={() => ( 
+              userService.getUser() ? 
+              <Watchlist />
+              :
+              <Redirect to='/login' />
+             )} />
+             <Route exact path='/signup' render={(props) => 
+              <SignUpPage 
+                {...props}
+                handleSignup={this.handleSignup}
+                />
+              }/>
+            <Route path='/individualcc' render={() => <IndividualCC />} />
+            <Route exact path='/login' render={(props) => 
+              <LoginPage
+                {...props}
+                handleLogin={this.handleLogin}
+              />
+            }/>
         
         </Switch>
         </div>

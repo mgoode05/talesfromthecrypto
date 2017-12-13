@@ -11,6 +11,9 @@ const HomePage = (props) => {
                     <tbody>
                     <tr>
                         <th>Name</th>
+                        <th>Symbol</th>
+                        <th>Price</th>
+                        <th>Price</th>
                         <th>Price</th>
                     </tr>
                         { props.cryptocurrencies.map((cryptocurrencies, idx) => <tr key={idx}>
@@ -18,7 +21,9 @@ const HomePage = (props) => {
                         <td>{cryptocurrencies.symbol}</td>
                         <td>{cryptocurrencies.price}</td>
                         <td>{cryptocurrencies.volume24hour}</td>
-                        <td>{cryptocurrencies.marketcap}</td>
+                        <td>{cryptocurrencies.marketcap}
+                        <button onClick={props.addStock}>Add To Watchlist
+                        </button></td>
 
                         </tr>) } 
                     </tbody>

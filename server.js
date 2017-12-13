@@ -11,8 +11,14 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'build')));
 // app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 
-//API Routes
+require('dotenv').config();
+require('./config/database');
 
+app.use(bodyParser.json());
+app.use(require('./config/auth'));
+
+//API Routes
+app.use('/api', require('./routes/api/api'));
 
 //"Catch All" Route-Client Side Routing
 app.get('/*', function(req, res) {

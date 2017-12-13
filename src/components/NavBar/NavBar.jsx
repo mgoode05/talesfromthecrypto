@@ -2,16 +2,30 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './NavBar.css';
 
-const NavBar = () => {
+const NavBar = (props) => {
+    let nav = props.user ?
+    <div>
+      <Link to='/' className='NavBar-link'>Home</Link>
+      <Link to='/watchlist'>Watchlist</Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <Link to='' className='NavBar-link' onClick={props.handleLogout} >LOG OUT</Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <span className='NavBar-welcome'>WELCOME</span>
+    </div>
+    :
+    <div>
+      <Link to='/login' className='NavBar-link'>LOG IN</Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <Link to='/signup' className='NavBar-link'>SIGN UP</Link>
+    </div>;
+    
+    
     return (
         <header>
-            <h1>
-                <Link to='/'>Home</Link>
-            &nbsp;
-                <Link to='/watchlist'>Watchlist</Link>
-            </h1>
+          {nav}
         </header>
-    )
-}
+      );
+    };
+    
 
 export default NavBar
