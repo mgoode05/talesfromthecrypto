@@ -5,8 +5,8 @@ var usersCtrl = require('../../controllers/users');
 var express = require('express');
 var router = express.Router();
 
-router.post('/users/signup', usersCtrl.signup);
-router.post('/users/login', usersCtrl.login);
+router.post('/signup', usersCtrl.signup);
+router.post('/login', usersCtrl.login);
 
 
 

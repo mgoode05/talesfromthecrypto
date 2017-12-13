@@ -18,7 +18,8 @@ app.use(bodyParser.json());
 app.use(require('./config/auth'));
 
 //API Routes
-app.use('/api', require('./routes/api/api'));
+app.use('/api/users', require('./routes/api/api'));
+app.use('/api/watchlist', require('./routes/api/watchlist'));
 
 //"Catch All" Route-Client Side Routing
 app.get('/*', function(req, res) {

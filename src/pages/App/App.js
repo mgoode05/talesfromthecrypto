@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   addStock = (props) => {
-    fetch('/watchlist', {
+    fetch('/api/watchlist', {
       method: 'POST',
       headers: {'content-Type': 'application/json'},
       body: JSON.stringify({ stock: "cats" })

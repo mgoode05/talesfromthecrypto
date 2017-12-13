@@ -1,5 +1,5 @@
 function index(req, res) {
-    res.json(_____)
+    res.json('hello')
 }
 
 module.exports = {
