@@ -37,9 +37,7 @@ class HomePage extends Component {
                         <td>{cryptocurrencies.symbol}</td>
                         <td>{cryptocurrencies.price}</td>
                         <td>{cryptocurrencies.volume24hour}</td>
-                        <td>{cryptocurrencies.marketcap}
-                        <button onClick={this.props.addStock}>Add To Watchlist
-                        </button></td>
+                        <td>{cryptocurrencies.marketcap}</td>
 
                         </tr>) } 
                     </tbody>

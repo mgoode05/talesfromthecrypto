@@ -7,7 +7,7 @@ const userSchema = new Schema({
     name: String,
     email: {type: String, required: true, lowercase: true, unique: true},
     password: String,
-    stocklist: [{type: Schema.Types.ObjectId}]
+    watchList: [String]
 });
 
 userSchema.methods.comparePassword = function(tryPassword, cb) {

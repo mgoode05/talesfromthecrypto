@@ -15,7 +15,6 @@ import Watchlist from '../WatchlistPage/Watchlist';
 import IndividualCC from '../IndividualCCPage/IndividualCC';
 import cc from 'cryptocompare';
 
-// import IndividualCC from '../IndividualCC/IndividualCC';
 
 class App extends Component {
   constructor(props) {
@@ -27,25 +26,17 @@ class App extends Component {
     }
   }
 
-  addStock = (props) => {
-    fetch('/api/watchlist', {
-      method: 'POST',
-      headers: {'content-Type': 'application/json'},
-      body: JSON.stringify({ stock: "cats" })
-    })
-    console.log('added stock')
-  }
-
+  
   componentDidMount() {
     let cryptocurrenciesShown = ['BTC', 'ETH', 'BCH', 'MIOTA', 'LTC', 'XRP'];
-  
+    
     let currencyOptions = ['USD'];
-  
+    
     let user = userService.getUser();
-      this.setState({user});
-
-  //Cryptocurrency API request
-  cc.priceFull([cryptocurrenciesShown], [currencyOptions])
+    this.setState({user});
+    
+    //Cryptocurrency API request
+    cc.priceFull([cryptocurrenciesShown], [currencyOptions])
     .then(prices => {
       var tempCrypto = [];
       for (var key in prices) {
@@ -56,30 +47,42 @@ class App extends Component {
           volume24hour: prices[key].USD.VOLUME24HOUR,
           marketcap: prices[key].USD.MKTCAP
         })
-    }
-    this.setState({cryptocurrencies: tempCrypto});
+      }
+      this.setState({cryptocurrencies: tempCrypto});
     })
   }
-
+  
   handleSignup = () => {
     this.setState({user: userService.getUser(), user: true});
   }
-
+  
   handleLogin = () => {
     this.setState({user: userService.getUser(), user: true})
   }
 
+  handleLogout = () => {
+    userService.logout();
+    this.setState({user: null})
+  }
+  
   handleClick = (e) => {
     console.log('this is event', e)
-    this.setState({stock: 'BITCOIN'})
-}
-
+    this.setState({stock: ':name'})
+  }
+  
+  addStock = (props) => {
+    fetch('../../routes/api/api/watchlist', {
+      method: 'POST',
+      headers: {'content-Type': 'application/json'},
+      body: JSON.stringify({ stock: "cats" })
+    })
+    console.log('added stock')
+  }
+  
   render() {
     return (
       <div>
-        <header>
-            <NavBar user={this.state.user}/>
-        </header>
+        <NavBar user={this.state.user} handleLogout={this.handleLogout}/>
         <Switch>
             <Route exact path='/' render={() => <HomePage  cryptocurrencies={this.state.cryptocurrencies} addStock={this.addStock} /> } />
             <Route exact path='/watchlist' render={() => ( 
