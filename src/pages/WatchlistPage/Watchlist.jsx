@@ -60,22 +60,23 @@ class Watchlist extends Component {
             (<table>
               <tbody>
                 <tr>
-                    <th>Name</th>
-                    <th>Symbol</th>
+                    <th>Name/Symbol</th>
                     <th>Price</th>
+                    <th>Change 24h</th>
                     <th>Volume 24h</th>
+                    <th>Open 24h</th>
                     <th>Market Cap</th>
+                    <th>Supply</th>
                 </tr>
             
             {currentCryptos.map((currency, idx) => {
               return ( <tr key={idx}> 
                 <td><Link to={`/name/${currency.name}`} onClick={this.handleClick}>{currency.name}</Link></td>
-                <td>{currency.symbol}</td>
-                <td>{currency.price}</td>
-                <td>{currency.change24hour}</td>
+                <td>${currency.price}</td>
+                <td key={currency.change24hour} style={currency.change24hour > 0 ? {color:'green'}: {color:'red'}}>{currency.change24hour}%</td>
                 <td>{currency.volume24hour}</td>
                 <td>{currency.open24hour}</td>
-                <td>{currency.marketcap}</td>
+                <td>${currency.marketcap}</td>
                 <td>{currency.supply}</td>
               </tr>)
             })}

@@ -39,14 +39,15 @@ class IndividualCC extends Component {
                     <tbody>
                     <tr>
                         <th>Name</th>
-                        <th>Symbol</th>
                         <th>Price</th>
+                        <th>Chnage 24h</th>
                         <th>Volume 24h</th>
+                        <th>Open 24h</th>
                         <th>Market Cap</th>
+                        <th>Supply</th>
                     </tr>
                         { this.props.cryptocurrencies.filter(c => c.name === this.props.match.params.name).map((c, idx) => <tr key={idx}>
                             <td><Link to={`/name/${c.name}`} onClick={this.handleClick}>{c.name}</Link></td>
-                            <td>{c.symbol}</td>
                             <td>{c.price}</td>
                             <td>{c.volume24hour}</td>
                             <td>{c.marketcap}</td>
