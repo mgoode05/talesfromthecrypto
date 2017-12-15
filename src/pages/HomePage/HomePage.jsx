@@ -27,7 +27,7 @@ class HomePage extends Component {
             { this.props.cryptocurrencies ? ( <table hoverable={true}>
                     <thead>
                     <tr>
-                        <th data-field="name">Name</th>
+                        <th data-field="name">Name/Symbol</th>
                         <th data-field="price">Price</th>
                         <th data-field="change24hour">Change 24h</th>
                         <th data-field="volume24hour">Volume 24h</th>
