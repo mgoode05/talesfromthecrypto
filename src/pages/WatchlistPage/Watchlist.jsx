@@ -4,8 +4,6 @@ import './Watchlist.css';
 import watchlistAPI from '../../utils/watchlistAPI';
 import tokenService from '../../utils/tokenService';
 import {Button} from 'react-materialize';
-// import IndividualCC from '../IndividualCCPage/IndividualCC';
-
 
 class Watchlist extends Component {
     constructor(props) {
@@ -17,9 +15,7 @@ class Watchlist extends Component {
     }
 
     getWatchlist() {
-      console.log('getting watch list')
       fetch('/api/watchlist', {
-      // fetch('/IndividualCCPage/IndividualCC', {
         method: 'GET',
         headers: {
           'content-Type': 'application/json',
@@ -32,18 +28,10 @@ class Watchlist extends Component {
           watchlist: data
         })
       })
-      
-      // (doc => {
-      //   console.log(doc)     
-      // })
-      // .then(watchlist => {
-      //   console.log('watchlist:', watchlist)
-      // })
     }
 
     componentDidMount() {
       this.getWatchlist();
-      console.log(this.state.watchlist)
     }
 
     render() {

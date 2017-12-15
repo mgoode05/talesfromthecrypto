@@ -10,9 +10,6 @@ class IndividualCC extends Component {
             id: props.id
         }
     }
-    componentDidMount() {
-
-    }
 
     addStock = (name) => {
         fetch('/api/watchlist', {
