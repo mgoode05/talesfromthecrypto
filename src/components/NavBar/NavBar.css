@@ -2,12 +2,24 @@
     display: flex;
     justify-content: center;
     margin: 0 0 20px;
+    background-color: green;
+    font-family: 'Russo One', sans-serif;
   }
   
   .NavBar-link {
     margin: 0 10px;
+    font-family: 'Russo One', sans-serif;
   }
   
   .NavBar-welcome {
-    color: grey;
+    color: white;
+    
+  }
+
+  .moneytime {
+    font-family: 'Russo One', sans-serif;
+  }
+
+  nav {
+    background-color: green
   }

@@ -23,7 +23,7 @@ class HomePage extends Component {
     render() {
     return (
         <div>
-            <h4>Tales From The Cryptocurrency</h4>
+            {/* <h4>Tales From The Cryptocurrency</h4> */}
             { this.props.cryptocurrencies ? ( <table hoverable={true}>
                     <thead>
                     <tr>
