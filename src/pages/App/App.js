@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import './App.css';
 import {
   Route,
@@ -7,13 +7,13 @@ import {
   Redirect
 } from 'react-router-dom';
 import userService from '../../utils/userService';
-import NavBar from '../../components/NavBar/NavBar';
+import NavBarTop from '../../components/NavBar/NavBar';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HomePage from '../HomePage/HomePage';
 import Watchlist from '../WatchlistPage/Watchlist';
 import IndividualCC from '../IndividualCCPage/IndividualCC';
-import cc from 'cryptocompare';
+import cc from './../../cryptocompare';
 
 
 class App extends Component {
@@ -25,10 +25,9 @@ class App extends Component {
       stock:""
     }
   }
-
   
   componentDidMount() {
-    let cryptocurrenciesShown = ['BTC', 'ETH', 'BCH', 'MIOTA', 'LTC', 'XRP'];
+    let cryptocurrenciesShown = ['BTC', 'ETH', 'BCH', 'MIOTA', 'LTC', 'XRP', 'DASH', 'BTG', 'XEM', 'XMR', 'ADA', 'ETC', 'XLM', 'NEO', 'EOS', 'BCC', 'PPT', 'WAVES', 'STRAT', 'LSK', 'QTUM', 'OMG', 'ZEC', 'USDT', 'MONA', 'HSR', 'NXT', 'ARDR', 'BCN', 'BTS', 'STEEM', 'SALT', 'VTC', 'ARK', 'EMC2', 'DCR', 'VERI', 'REP', 'KMD', 'TRX', 'DOGE', 'BNB', 'SC', 'GNT', 'PIVX', 'SAN', 'BAT', 'PAY', 'SNT', 'MAID', 'QASH'];
     
     let currencyOptions = ['USD'];
     
@@ -44,8 +43,11 @@ class App extends Component {
           name: key, 
           symbol: prices[key].USD.FROMSYMBOL,
           price: prices[key].USD.PRICE,
+          change24hour: prices[key].USD.CHANGE24HOUR,
           volume24hour: prices[key].USD.VOLUME24HOUR,
-          marketcap: prices[key].USD.MKTCAP
+          open24hour: prices[key].USD.OPEN24HOUR,
+          marketcap: prices[key].USD.MKTCAP,
+          supply: prices[key].USD.SUPPLY
         })
       }
       this.setState({cryptocurrencies: tempCrypto});
@@ -82,12 +84,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar user={this.state.user} handleLogout={this.handleLogout}/>
+        <NavBarTop user={this.state.user} handleLogout={this.handleLogout}/>
         <Switch>
             <Route exact path='/' render={() => <HomePage  cryptocurrencies={this.state.cryptocurrencies} addStock={this.addStock} /> } />
             <Route exact path='/watchlist' render={() => ( 
               userService.getUser() ? 
-              <Watchlist />
+              <Watchlist cryptocurrencies={this.state.cryptocurrencies} user={this.state.user}/>
               :
               <Redirect to='/login' />
              )} />

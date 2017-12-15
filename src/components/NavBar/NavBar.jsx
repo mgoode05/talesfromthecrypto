@@ -1,23 +1,24 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './NavBar.css';
+import {Navbar, NavItem} from 'react-materialize';
 
-const NavBar = (props) => {
+const NavBarTop = (props) => {
     let nav = props.user ?
-    <header>
-      <Link to='/' className='NavBar-link'>Home</Link>
-      <Link to='/watchlist'>Watchlist</Link>
+    <Navbar brand='Tales From The Crypto' right>
+      <NavItem href='/' className='NavBar-link'>Home</NavItem>
+      <NavItem href='/watchlist'>Watchlist</NavItem>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <Link to='' className='NavBar-link' onClick={props.handleLogout} >LOG OUT</Link>
+      <NavItem href='' className='NavBar-link' onClick={props.handleLogout} >LOG OUT</NavItem>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <span className='NavBar-welcome'>WELCOME</span>
-    </header>
+      <span className='NavBar-welcome'>WELCOME {props.user.name}</span>
+    </Navbar>
     :
-    <header>
-      <Link to='/login' className='NavBar-link'>LOG IN</Link>
+    <Navbar>
+      <NavItem href='/login' className='NavBar-link'>LOG IN</NavItem>
       &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to='/signup' className='NavBar-link'>SIGN UP</Link>
-    </header>;
+      <NavItem href='/signup' className='NavBar-link'>SIGN UP</NavItem>
+    </Navbar>;
     
     
     return (
@@ -28,4 +29,4 @@ const NavBar = (props) => {
     };
     
 
-export default NavBar
+export default NavBarTop

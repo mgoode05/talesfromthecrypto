@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import tokenService from '../../utils/tokenService';
+import {Button, icon } from 'react-materialize';
 
 class IndividualCC extends Component {
     constructor(props) {
@@ -50,8 +51,8 @@ class IndividualCC extends Component {
                             <td>{c.volume24hour}</td>
                             <td>{c.marketcap}</td>
                             <td>
-                                <button onClick={() => this.addStock(c.name) }>Add To Watchlist</button>
-                            [</td>
+                                <Button onClick={() => this.addStock(c.name)} floating large className='blue' waves='light' icon='add'>Add To Watchlist</Button>
+                            </td>
 
                         </tr>) } 
                     </tbody>
@@ -63,4 +64,5 @@ class IndividualCC extends Component {
 }
 
 export default IndividualCC;
+
 

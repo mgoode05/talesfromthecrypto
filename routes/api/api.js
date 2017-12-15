@@ -1,5 +1,3 @@
-// const cc = require('cryptocompare');
-// global.fetch = require('node-fetch');
 var usersCtrl = require('../../controllers/users');
 
 var express = require('express');
