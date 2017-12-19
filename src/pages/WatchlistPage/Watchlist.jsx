@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import './Watchlist.css';
-import watchlistAPI from '../../utils/watchlistAPI';
 import tokenService from '../../utils/tokenService';
 import {Button} from 'react-materialize';
 
@@ -32,6 +31,10 @@ class Watchlist extends Component {
 
     componentDidMount() {
       this.getWatchlist();
+    }
+
+    deleteFromWatchList = (e) => {
+      console.log('deleting this' +  this.state.watchlist)
     }
 
     render() {
@@ -66,6 +69,8 @@ class Watchlist extends Component {
                 <td>{currency.open24hour}</td>
                 <td>${currency.marketcap}</td>
                 <td>{currency.supply}</td>
+                <td><Button onClick={() =>  this.deleteFromWatchList(currency.name)}>Delete</Button>
+                  </td>
               </tr>)
             })}
               </tbody>

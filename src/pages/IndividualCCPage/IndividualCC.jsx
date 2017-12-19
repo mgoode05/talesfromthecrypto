@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import tokenService from '../../utils/tokenService';
-import {Button, icon } from 'react-materialize';
+import {Button } from 'react-materialize';
 
 class IndividualCC extends Component {
     constructor(props) {

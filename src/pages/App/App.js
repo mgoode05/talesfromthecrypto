@@ -55,11 +55,11 @@ class App extends Component {
   }
   
   handleSignup = () => {
-    this.setState({user: userService.getUser(), user: true});
+    this.setState({user: userService.getUser()});
   }
   
   handleLogin = () => {
-    this.setState({user: userService.getUser(), user: true})
+    this.setState({user: userService.getUser()})
   }
 
   handleLogout = () => {
@@ -89,7 +89,7 @@ class App extends Component {
             <Route exact path='/' render={() => <HomePage  cryptocurrencies={this.state.cryptocurrencies} addStock={this.addStock} /> } />
             <Route exact path='/watchlist' render={() => ( 
               userService.getUser() ? 
-              <Watchlist cryptocurrencies={this.state.cryptocurrencies} user={this.state.user}/>
+              <Watchlist cryptocurrencies={this.state.cryptocurrencies} user={this.state.user} />
               :
               <Redirect to='/login' />
              )} />

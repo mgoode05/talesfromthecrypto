@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './HomePage.css';
 import {Link } from 'react-router-dom';
-import {Table, Col } from 'react-materialize';
+// import {Table, Col } from 'react-materialize';
 
 
 
